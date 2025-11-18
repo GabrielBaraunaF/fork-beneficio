@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence 
+             https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    
+    <persistence-unit name="beneficioPU" transaction-type="JTA">
+        
+        <!-- DataSource H2 configurado no servidor de aplicação -->
+        <jta-data-source>java:jboss/datasources/H2DS</jta-data-source>
+        
+        <!-- Entidades do projeto -->
+        <class>br.com.beneficio.ejb.entity.Beneficio</class>
+        
+        <properties>
+            <!-- Dialeto H2 -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            
+            <!-- Criar/atualizar tabelas automaticamente -->
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            
+            <!-- Mostrar SQL no console -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+            <property name="hibernate.hbm2ddl.import_files" value="import-beneficiario.sql"/>
+            <property name="hibernate.cache.use_second_level_cache" value="false"/>
+<property name="hibernate.cache.use_query_cache" value="false"/>
+        </properties>
+    </persistence-unit>
+    
+</persistence>
+
+
+
+
+
+

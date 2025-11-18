@@ -1,0 +1,258 @@
+.container {
+    display: flex;
+    height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  .sidebar {
+    width: 300px;
+    background-color: white;
+    border-right: 1px solid #ddd;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .titulo-lista {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .lista-beneficios {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .beneficio-item-wrapper {
+    position: relative;
+  }
+  
+  .beneficio-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .beneficio-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .beneficio-nome {
+    font-weight: bold;
+    margin: 0 0 5px 0;
+  }
+  
+  .beneficio-id {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+  }
+  
+  .btn-menu {
+    padding: 5px 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    right: 0;
+    margin-top: 5px;
+    width: 180px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 10;
+  }
+  
+  .dropdown-item {
+    width: 100%;
+    text-align: left;
+    padding: 10px 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .saldo-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e3f2fd;
+    border: 1px solid #90caf9;
+    border-radius: 5px;
+  }
+  
+  .saldo-titulo {
+    font-size: 13px;
+    color: #1976d2;
+    margin: 0 0 5px 0;
+  }
+  
+  .saldo-valor {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1565c0;
+    margin: 0;
+  }
+  
+  
+  .main-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+  }
+  
+  .card-transferencia {
+    width: 100%;
+    max-width: 450px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  .titulo-principal {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .campo {
+    margin-bottom: 20px;
+  }
+  
+  .label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .campo-origem {
+    padding: 15px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+  }
+  
+  .origem-nome {
+    font-weight: bold;
+    margin: 0 0 5px 0;
+  }
+  
+  
+  
+  .campo-vazio {
+    padding: 15px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #666;
+    text-align: center;
+  }
+  
+  .seta-centro {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 24px;
+    color: #999;
+  }
+  
+  .select-destino {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+  
+  .select-destino:disabled {
+    background-color: #f5f5f5;
+  }
+  
+  .divisor {
+    margin: 20px 0;
+    border-top: 1px solid #ddd;
+  }
+  
+  .input-wrapper {
+    position: relative;
+  }
+  
+  .cifrao {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: #666;
+    font-weight: bold;
+  }
+  
+  .input-valor {
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    box-sizing: border-box;
+  }
+  
+  .input-valor:disabled {
+    background-color: #f5f5f5;
+  }
+  
+  .btn-confirmar {
+    width: 100%;
+    padding: 12px;
+    background-color: #1976d2;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-confirmar:hover:not(:disabled) {
+    background-color: #1565c0;
+  }
+  
+  .btn-confirmar:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+
+  .toast {
+    position: fixed;
+    bottom: -100px;
+    right: 20px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: bottom 0.3s ease-in-out;
+    z-index: 9999;
+    min-width: 300px;
+    
+    &.show {
+      bottom: 20px;
+    }
+    
+    
+    &.error {
+      background-color: #ef4444;
+    }
+  }

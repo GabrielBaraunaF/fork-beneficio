@@ -1,0 +1,5 @@
+br/com/beneficio/ejb/entity/Beneficio.class
+br/com/beneficio/ejb/exception/BusinessException.class
+br/com/beneficio/ejb/service/BeneficioServiceRemote.class
+br/com/beneficio/ejb/service/BeneficioServiceBean.class
+br/com/beneficio/ejb/to/BeneficioTO.class

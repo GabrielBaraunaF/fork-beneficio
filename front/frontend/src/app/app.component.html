@@ -1,0 +1,103 @@
+<div class="container">
+  
+  <div class="sidebar">
+    <h2 class="titulo-lista">Benefícios</h2>
+    
+    <div class="lista-beneficios">
+      <div *ngFor="let beneficio of beneficios" class="beneficio-item-wrapper">
+        <div class="beneficio-item">
+          <div class="beneficio-info">
+            <p class="beneficio-nome">{{ beneficio.nome }}</p>
+            <p class="beneficio-id">ID: {{ beneficio.id }}</p>
+          </div>
+          
+          <button class="btn-menu" (click)="toggleMenu(beneficio.id)">
+            <span class="icone-seta">▼</span>
+          </button>
+        </div>
+
+        
+        <div class="dropdown-menu" *ngIf="menuAberto === beneficio.id">
+          <button class="dropdown-item" (click)="handleVerSaldo(beneficio)">
+             Ver Saldo
+          </button>
+          <button class="dropdown-item" (click)="handleTransferir(beneficio)">
+            Transferir
+          </button>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="saldo-box" *ngIf="showSaldo">
+      <p class="saldo-titulo">Saldo de {{ showSaldo.nome }}</p>
+      <p class="saldo-valor">R$ {{ showSaldo.valor.toFixed(2) }}</p>
+    </div>
+  </div>
+
+  
+  <div class="main-content">
+    <div class="card-transferencia">
+      <h1 class="titulo-principal"> Transferir Benefício</h1>
+
+      
+      <div class="campo">
+        <label class="label">De:</label>
+        <div class="campo-origem" *ngIf="origem; else origemVazia">
+          <p class="origem-nome">{{ origem.nome }}</p>
+        </div>
+        <ng-template #origemVazia>
+          <div class="campo-vazio">
+            Selecione um benefício na lista →
+          </div>
+        </ng-template>
+      </div>
+
+      <div class="seta-centro">↓</div>
+
+      
+      <div class="campo">
+        <label class="label">Para:</label>
+        <select 
+          class="select-destino"
+          [(ngModel)]="destinoId"
+          [disabled]="!origem">
+          <option [value]="null">Selecione o destino</option>
+          <option *ngFor="let b of beneficiosFiltrados" [value]="b.id">
+            {{ b.nome }}
+          </option>
+        </select>
+      </div>
+
+      <div class="divisor"></div>
+
+      
+      <div class="campo">
+        <label class="label">Valor da transferência:</label>
+        <div class="input-wrapper">
+          <span class="cifrao">R$</span>
+          <input 
+            type="number" 
+            class="input-valor"
+            [(ngModel)]="valor"
+            placeholder="0,00"
+            step="0.01"
+            min="0"
+            [disabled]="!origem">
+        </div>
+      </div>
+
+      
+      <button 
+        class="btn-confirmar"
+        (click)="confirmarTransferencia()"
+        [disabled]="!origem || !destinoId || !valor">
+        Confirmar Transferência
+      </button>
+    </div>
+  </div>
+
+  <div class="toast" [class.show]="showToast" [class.success]="toastType === 'success'" [class.error]="toastType === 'error'">
+    {{ toastMessage }}
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Arquivo de configuração do DataSource H2 para WildFly/JBoss
+    
+    Para usar este arquivo:
+    1. Copie para o diretório de deployments do WildFly: 
+       WILDFLY_HOME/standalone/deployments/
+    
+    2. Ou adicione a configuração manualmente no standalone.xml
+-->
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema">
+    <datasource jndi-name="java:jboss/datasources/H2DS"
+                pool-name="H2DS"
+                enabled="true"
+                use-java-context="true">
+        <!-- URL de conexão H2 em memória -->
+        <!-- Para persistir dados, use: jdbc:h2:file:~/beneficiodb;AUTO_SERVER=TRUE -->
+        <connection-url>jdbc:h2:mem:beneficiodb;DB_CLOSE_DELAY=0;DB_CLOSE_ON_EXIT=true</connection-url>
+        
+        <!-- Driver H2 (já incluído no WildFly) -->
+        <driver>h2</driver>
+        
+        <!-- Credenciais (padrão H2) -->
+        <security>
+            <user-name>sa</user-name>
+            <password></password>
+        </security>
+        
+        <!-- Pool de conexões -->
+        <pool>
+            <min-pool-size>5</min-pool-size>
+            <max-pool-size>20</max-pool-size>
+        </pool>
+        
+        <!-- Validação de conexão -->
+        <validation>
+            <validate-on-match>true</validate-on-match>
+            <background-validation>false</background-validation>
+        </validation>
+    </datasource>
+</datasources>
+
+
+
+
+
+

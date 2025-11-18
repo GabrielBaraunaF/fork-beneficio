@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+  wildfly-ejb:
+    build:
+      context: ./beneficio-ejb
+      dockerfile: Dockerfile
+    container_name: beneficio-wildfly
+    ports:
+      - "8080:8080"
+      - "9990:9990"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9990/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 90s
+
+  spring-backend:
+    build:
+      context: .
+      dockerfile: beneficio-backend/Dockerfile
+    container_name: beneficio-backend
+    ports:
+      - "8090:8090"
+    environment:
+      - WILDFLY_HOST=wildfly-ejb
+      - WILDFLY_PORT=8080
+      - EJB_USERNAME=ejbuser
+      - EJB_PASSWORD=ejbpass123
+    depends_on:
+      - wildfly-ejb
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health || exit 1"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  angular-frontend:
+    build:
+      context: ./front/frontend
+      dockerfile: Dockerfile
+    container_name: beneficio-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - spring-backend
